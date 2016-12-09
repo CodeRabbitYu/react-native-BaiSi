@@ -21,6 +21,9 @@ import Request from '../../common/request';
 
 import ListItem from './component/listItem';
 
+import PictureDetail from './detail/pictureDetail';
+import SatinDetail from './detail/satinDetail';
+
 let cacheResults = {
     items:[],
     allPage:0,
@@ -156,9 +159,40 @@ export default class homeList extends Component {
             console.log(error);
         });
     }
+
+    satinPress(rowData){
+        let {navigator} = this.props;
+        if (navigator) {
+            InteractionManager.runAfterInteractions(()=> {
+                navigator.push({
+                    component: SatinDetail,
+                    passProps:{
+                        pictureData:rowData
+                    }
+                })
+            });
+        }
+    }
+
+    picturePress(rowData){
+        let {navigator} = this.props;
+        if (navigator) {
+            InteractionManager.runAfterInteractions(()=> {
+                navigator.push({
+                    component: PictureDetail,
+                    passProps:{
+                        pictureData:rowData
+                    }
+                })
+            });
+        }
+    }
     renderRow(rowData){
         return(
-            <ListItem itemData={rowData}/>
+            <ListItem itemData={rowData}
+                      picturePress={this.picturePress.bind(this,rowData)}
+                      satinPress={this.satinPress.bind(this,rowData)}
+            />
         )
     }
     render() {

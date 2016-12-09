@@ -11,16 +11,19 @@ import {
     View,
     Dimensions,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
 } from 'react-native';
 
 let {width, height} = Dimensions.get('window');
 
 import Icon from 'react-native-vector-icons/Ionicons';
+import ItemDetail from './itemDetail';
 
 export default class listItem extends Component {
     static defaultProps = {
         itemData: {},
+        picturePress:null,
+        satinPress:null,
     };
     constructor(props){
         super(props);
@@ -32,6 +35,18 @@ export default class listItem extends Component {
                 {'icon':'ios-text-outline','title':this.props.itemData.comment,'selected':false}
             ]
         }
+    }
+
+    demoInfo(){
+        return(
+            <View style={styles.userInfoStyle}>
+                <Image source={{uri:'http://image81.360doc.com/DownloadImg/2015/01/2902/49604043_1.jpg'}} style={styles.iconStyle} />
+                <View style={styles.userDetailStyle}>
+                    <Text style={styles.userTextStyle}>Mysql 数据库介绍</Text>
+                    <Text style={styles.userTimeStyle}>{this.props.itemData.passtime}</Text>
+                </View>
+            </View>
+        )
     }
 
     userInfo(){
@@ -48,33 +63,16 @@ export default class listItem extends Component {
 
     detailInfo(){
         return(
-            <View>
-                <Text>{this.props.itemData.text}</Text>
-            </View>
+            <ItemDetail itemData={this.props.itemData}
+                        picturePress={this.props.picturePress}
+                        satinPress={this.props.satinPress}
+            />
         )
     }
 
     btnPress(i){
 
-        // let newBtnData = this.state.btnData;
-        //
-        // newBtnData[i].selected = true;
-        //
-        // this.setState({
-        //     btnData:newBtnData
-        // });
-
-        let newBtnData = this.state.btnData;
-
-        newBtnData.forEach((e)=>{
-            if(e.selected){
-                e.selected=false
-            }
-        });
-        newBtnData[i].selected=true;
-        this.setState({
-            btnData:newBtnData
-        });
+        
     }
 
     createBtn(){
@@ -82,7 +80,7 @@ export default class listItem extends Component {
         for(let i = 0 ; i < this.state.btnData.length ; i ++){
             let btnData = this.state.btnData;
             btnArr.push(
-                <TouchableOpacity key={i} onPress={()=>{this.btnPress(i)}} >
+                <TouchableOpacity key={i} onPress={()=>{this.btnPress(i)}} activeOpacity={1}>
 
                     <View style={styles.btnStyle}>
                         {
@@ -150,7 +148,7 @@ const styles = StyleSheet.create({
         height:50,
         borderRadius:25,
         marginTop:5,
-        marginLeft:5,
+        marginLeft:10,
     },
     userDetailStyle:{
         alignSelf:'center',

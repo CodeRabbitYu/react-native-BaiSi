@@ -28,9 +28,10 @@ export default class middleContainer extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor:'rgba(88, 87, 86, 0.3)',
+
+        position:'relative',
+        bottom:-0,
     },
     welcome: {
         fontSize: 20,

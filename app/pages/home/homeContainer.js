@@ -28,11 +28,19 @@ export default class homeContainer extends Component {
                 {'title':'段子', 'type':'29',},
                 {'title':'声音 ', 'type':'31',},
             ],
+            typeArr1 : [
+                {'title':'IT', 'type':'1',},
+                {'title':'财务', 'type':'41',},
+                {'title':'营业', 'type':'10',},
+                {'title':'受理', 'type':'29',},
+                {'title':'管理 ', 'type':'31',},
+            ],
         }
     }
     render() {
         let titleConfig = {
-            title: '百思不得姐',
+            // title: '百思不得姐',
+            title:'云知识库',
             style: {color:'red',fontSize:20,fontWeight:'600'}
         };
         return (
@@ -70,5 +78,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+
 });
 
