@@ -57,7 +57,6 @@ export default class pictureDetail extends Component {
                     <Image source={{uri:this.props.pictureData.cdn_img}}
                            style={[styles.imageStyle,{height:this.state.imageHeight}]}
                            resizeMode='contain'
-                           indicator={ProgressBar}
                     />
                 </TouchableOpacity>
             )
@@ -67,7 +66,6 @@ export default class pictureDetail extends Component {
                 <Image source={{uri:this.props.pictureData.image0}}
                        style={[styles.imageNormalStyle,
                              {height:this.state.imageHeight,marginTop:(height-this.state.imageHeight) / 2}]}
-                       indicator={ProgressBar}
                 />
             </TouchableOpacity>
         )

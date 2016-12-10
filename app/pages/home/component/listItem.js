@@ -71,8 +71,9 @@ export default class listItem extends Component {
     }
 
     btnPress(i){
+        alert(i);
 
-        
+
     }
 
     createBtn(){
@@ -81,7 +82,6 @@ export default class listItem extends Component {
             let btnData = this.state.btnData;
             btnArr.push(
                 <TouchableOpacity key={i} onPress={()=>{this.btnPress(i)}} activeOpacity={1}>
-
                     <View style={styles.btnStyle}>
                         {
                             btnData[i].selected ?
@@ -89,15 +89,12 @@ export default class listItem extends Component {
                                 :
                                 <Icon name={btnData[i].icon} size={20} color='orange'/>
                         }
-
                         <Text style={styles.btnTextStyle}>{btnData[i].title}</Text>
                         <View style={styles.btnLineStyle} />
                     </View>
                 </TouchableOpacity>
             );
         }
-
-
         return btnArr;
     }
 
@@ -112,8 +109,11 @@ export default class listItem extends Component {
     renderItem(){
         return(
             <View>
+                {/*Cell顶部*/}
                 {this.userInfo()}
+                {/*Cell中间内容*/}
                 {this.detailInfo()}
+                {/*Cell底部*/}
                 {this.bottomInfo()}
             </View>
         )

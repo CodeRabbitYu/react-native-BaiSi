@@ -39,8 +39,8 @@ export default class homeContainer extends Component {
     }
     render() {
         let titleConfig = {
-            // title: '百思不得姐',
-            title:'云知识库',
+            title: '百思不得姐',
+            // title:'云知识库',
             style: {color:'red',fontSize:20,fontWeight:'600'}
         };
         return (
