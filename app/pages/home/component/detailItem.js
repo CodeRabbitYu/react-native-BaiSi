@@ -23,6 +23,9 @@ import ProgressBar from 'react-native-progress/Bar';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import SatinItem from './satinItem';
+import PictureItem from './pictureItem';
+import VideoItem from './videoItem';
 
 export default class itemDetail extends Component {
     static defaultProps = {
@@ -35,10 +38,13 @@ export default class itemDetail extends Component {
         // 图片
         if (this.props.itemData.type == '10'){
             return(
-                <PictureItem pictureData={this.props.itemData}
-                             picturePress={this.props.picturePress}
-                             satinPress={this.props.satinPress}
-                />
+                <View>
+                    <SatinItem satinData={this.props.itemData.text} satinPress={this.props.satinPress} />
+                    <PictureItem pictureData={this.props.itemData}
+                                 picturePress={this.props.picturePress}
+                    />
+                </View>
+
             )
         }
         // 段子
@@ -53,6 +59,9 @@ export default class itemDetail extends Component {
         if (this.props.itemData.type == '31'){
             return(
                 <View>
+                    <SatinItem satinData={this.props.itemData.text}
+                               satinPress={this.props.satinPress}
+                    />
                     <Text>{this.props.itemData.text}</Text>
                 </View>
             )
@@ -61,6 +70,9 @@ export default class itemDetail extends Component {
         if (this.props.itemData.type == '41'){
             return(
                 <View>
+                    <SatinItem satinData={this.props.itemData.text}
+                               satinPress={this.props.satinPress}
+                    />
                     <VideoItem videoData={this.props.itemData}/>
                 </View>
             )
@@ -70,7 +82,7 @@ export default class itemDetail extends Component {
 }
 
 // 视频
-class VideoItem extends Component{
+class VideoItem1 extends Component{
     static defaultProps = {
         videoData: React.PropTypes.string,
         satinPress:null,
@@ -100,7 +112,6 @@ class VideoItem extends Component{
     render(){
         return(
             <View style={styles.imageViewStyle}>
-                <SatinItem satinData={this.props.videoData.text} />
                 <Image source={{uri:this.props.videoData.cdn_img}} style={{width:width-20,height:this.state.imageHeight}}
                        indicator={ProgressBar}>
                     <Icon
@@ -117,14 +128,13 @@ class VideoItem extends Component{
 
 
                 </Image>
-
             </View>
         )
     }
 }
 
 // 段子
-class SatinItem extends Component{
+class SatinItem1 extends Component{
     static defaultProps = {
         satinData: React.PropTypes.string,
         satinPress:null,
@@ -144,7 +154,7 @@ class SatinItem extends Component{
 }
 
 // 图片
-class PictureItem extends Component{
+class PictureItem1 extends Component{
     static defaultProps = {
         pictureData: React.PropTypes.string,
         picturePress: null,
@@ -174,7 +184,7 @@ class PictureItem extends Component{
         if (this.state.imageHeight > height){
             // console.log('长图'+this.props.pictureData.height);
             return(
-                <Image source={{uri:this.props.pictureData.image0}} style={{width:width-20,height:height}}
+                <Image source={{uri:this.props.pictureData.image0}} style={{width:width-20,height:300}}
                        resizeMode='contain' indicator={ProgressBar}
                 >
                     <View style={styles.longImageViewStyle}>
@@ -193,7 +203,6 @@ class PictureItem extends Component{
     render(){
         return(
                 <View style={styles.imageViewStyle}>
-                    <SatinItem satinData={this.props.pictureData.text} satinPress={this.props.satinPress}/>
                     <TouchableOpacity onPress={this.props.picturePress} activeOpacity={0.8}>
                         {this.renderPicture()}
                     </TouchableOpacity>

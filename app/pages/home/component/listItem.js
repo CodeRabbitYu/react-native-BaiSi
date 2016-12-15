@@ -12,109 +12,87 @@ import {
     Dimensions,
     Image,
     TouchableOpacity,
+    InteractionManager
 } from 'react-native';
 
 let {width, height} = Dimensions.get('window');
 
-import Icon from 'react-native-vector-icons/Ionicons';
-import ItemDetail from './itemDetail';
+
+import UserInfoItem from './userInfoItem';
+import DetailItem from './detailItem';
+import ToolBarItem from './toolBarItem';
+
+import PictureDetail from '../detail/pictureDetail';
+import VideoDetail from '../detail/videoDetail';
 
 export default class listItem extends Component {
     static defaultProps = {
         itemData: {},
-        picturePress:null,
-        satinPress:null,
+        navigator:null,
     };
-    constructor(props){
-        super(props);
-        this.state = {
-            btnData : [
-                {'icon':'ios-thumbs-up-outline','title':this.props.itemData.love,'selected':false},
-                {'icon':'ios-thumbs-down-outline','title':this.props.itemData.hate,'selected':false},
-                {'icon':'ios-open-outline','title':this.props.itemData.repost,'selected':false},
-                {'icon':'ios-text-outline','title':this.props.itemData.comment,'selected':false}
-            ]
+
+    picturePress(){
+        let {navigator} = this.props;
+        if (navigator) {
+            InteractionManager.runAfterInteractions(()=> {
+                navigator.push({
+                    component: PictureDetail,
+                    passProps:{
+                        pictureData:this.props.itemData
+                    }
+                })
+            });
         }
     }
 
-    demoInfo(){
-        return(
-            <View style={styles.userInfoStyle}>
-                <Image source={{uri:'http://image81.360doc.com/DownloadImg/2015/01/2902/49604043_1.jpg'}} style={styles.iconStyle} />
-                <View style={styles.userDetailStyle}>
-                    <Text style={styles.userTextStyle}>Mysql 数据库介绍</Text>
-                    <Text style={styles.userTimeStyle}>{this.props.itemData.passtime}</Text>
-                </View>
-            </View>
-        )
-    }
-
-    userInfo(){
-        return(
-            <View style={styles.userInfoStyle}>
-                <Image source={{uri:this.props.itemData.profile_image}} style={styles.iconStyle}/>
-                <View style={styles.userDetailStyle}>
-                    <Text style={styles.userTextStyle}>{this.props.itemData.name}</Text>
-                    <Text style={styles.userTimeStyle}>{this.props.itemData.passtime}</Text>
-                </View>
-            </View>
-        )
-    }
-
-    detailInfo(){
-        return(
-            <ItemDetail itemData={this.props.itemData}
-                        picturePress={this.props.picturePress}
-                        satinPress={this.props.satinPress}
-            />
-        )
-    }
-
-    btnPress(i){
-        alert(i);
-
-
-    }
-
-    createBtn(){
-        let btnArr = [];
-        for(let i = 0 ; i < this.state.btnData.length ; i ++){
-            let btnData = this.state.btnData;
-            btnArr.push(
-                <TouchableOpacity key={i} onPress={()=>{this.btnPress(i)}} activeOpacity={1}>
-                    <View style={styles.btnStyle}>
-                        {
-                            btnData[i].selected ?
-                                <Icon name={btnData[i].icon} size={20} color='red'/>
-                                :
-                                <Icon name={btnData[i].icon} size={20} color='orange'/>
-                        }
-                        <Text style={styles.btnTextStyle}>{btnData[i].title}</Text>
-                        <View style={styles.btnLineStyle} />
-                    </View>
-                </TouchableOpacity>
-            );
+    videoPress(){
+        let {navigator} = this.props;
+        if (navigator) {
+            InteractionManager.runAfterInteractions(()=> {
+                // alert('点击视频');
+                // navigator.push({
+                //     component: VideoDetail,
+                //     passProps:{
+                //         videoData:this.props.itemData,
+                //         isVideoDetail:true
+                //     }
+                // })
+            });
         }
-        return btnArr;
     }
 
-    bottomInfo(){
-        return(
-            <View style={styles.bottomStyle}>
-                {this.createBtn()}
-            </View>
-        )
+    satinPress(){
+        let {navigator} = this.props;
+        if (navigator) {
+            InteractionManager.runAfterInteractions(()=> {
+                alert('点击文字');
+            });
+        }
+    }
+
+    userInfoPress(){
+        let {navigator} = this.props;
+        if (navigator) {
+            InteractionManager.runAfterInteractions(()=> {
+                alert('点击用户信息');
+            });
+        }
     }
 
     renderItem(){
         return(
             <View>
                 {/*Cell顶部*/}
-                {this.userInfo()}
+                <UserInfoItem userInfoData={this.props.itemData} userInfoPress={()=>{this.userInfoPress()}}/>
+
                 {/*Cell中间内容*/}
-                {this.detailInfo()}
+                <DetailItem itemData={this.props.itemData}
+                            picturePress={() => this.picturePress()}
+                            satinPress={()=>this.satinPress()}
+                />
+
                 {/*Cell底部*/}
-                {this.bottomInfo()}
+                <ToolBarItem toolBarData={this.props.itemData} />
             </View>
         )
     }
@@ -133,62 +111,11 @@ const styles = StyleSheet.create({
     container: {
         width:width,
         backgroundColor: 'white',
-
     },
     placeViewStyle: {
         backgroundColor:'#ddd',
         height:10,
-
     },
-    userInfoStyle:{
-      flexDirection:'row',
-    },
-    iconStyle: {
-        width:50,
-        height:50,
-        borderRadius:25,
-        marginTop:5,
-        marginLeft:10,
-    },
-    userDetailStyle:{
-        alignSelf:'center',
-        marginLeft:8,
-        marginTop:5,
-    },
-    userTextStyle:{
-        fontSize:15,
-        marginBottom:3,
-        color:'#9596a8',
-    },
-    userTimeStyle:{
-        fontSize:13,
-        color:'#9596a8',
-    },
-    bottomStyle:{
-        height:30,
-        flexDirection:'row',
-        borderTopWidth:0.5,
-        borderTopColor:'#ddd'
-    },
-    btnStyle:{
-        width:width/4,
-        height:30,
-        flexDirection:'row',
-        alignItems :'center',
-        justifyContent:'center',
-    },
-    btnTextStyle:{
-        marginLeft:3,
-        fontSize:15
-    },
-    btnLineStyle:{
-        position:'absolute',
-        right:0,
-        top:5,
-        width:0.5,
-        height:20,
-        backgroundColor:'#ddd'
-    }
 });
 
 

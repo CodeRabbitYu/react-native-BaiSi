@@ -21,7 +21,7 @@ let {width, height} = Dimensions.get('window');
 
 import Image from 'react-native-image-progress';
 import ProgressBar from 'react-native-progress/Bar';
-
+import PictureItem from '../component/pictureItem';
 
 export default class pictureDetail extends Component {
     static defaultProps = {
@@ -85,7 +85,8 @@ export default class pictureDetail extends Component {
                 scrollEnabled={true}
                 style={styles.container}
             >
-                {this.renderPicture()}
+                <PictureItem pictureData={this.props.pictureData} isPicDetail={true}
+                             popPress={()=>this.popPress()}/>
             </ScrollView>
         );
     }

@@ -10,7 +10,8 @@ import {
     StyleSheet,
     Text,
     View,
-    TouchableOpacity
+    TouchableOpacity,
+    InteractionManager
 } from 'react-native';
 
 import NavBar from 'react-native-navbar';
@@ -49,16 +50,14 @@ export default class homeContainer extends Component {
                     title={titleConfig}
                     style={{height:44,borderBottomWidth:1,borderBottomColor:'#dddddd'}}
                 />
-
+                {}
                 <ScrollableTabView
                     renderTabBar={() => <ScrollableTabBar/>}
                     tabBarActiveTextColor='red'
                     tabBarInactiveTextColor='#rgb(67,67,67)'
                     tabBarBackgroundColor='#f7f7f7'
-
                     style={{height:10}}
                 >
-
                     {
                         this.state.typeArr.map((item, i) => {
                             return (
