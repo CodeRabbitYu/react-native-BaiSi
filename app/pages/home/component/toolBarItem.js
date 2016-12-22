@@ -41,25 +41,7 @@ export default class toolBarItem extends Component {
     btnPress(i){
         alert(i);
 
-        // let newBtnData = this.state.btnData;
-        //
-        // newBtnData[i].selected = true;
-        //
-        // this.setState({
-        //     btnData:newBtnData
-        // });
-
-        let newBtnData = this.state.btnData;
-
-        newBtnData.forEach((e)=>{
-            if(e.selected){
-                e.selected=false
-            }
-        });
-        newBtnData[i].selected=true;
-        this.setState({
-            btnData:newBtnData
-        });
+        
     };
 
     createBtn(){

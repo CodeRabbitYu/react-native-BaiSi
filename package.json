@@ -15,9 +15,7 @@
     "react-native-scrollable-tab-view": "^0.7.0",
     "react-native-tab-navigator": "^0.3.3",
     "react-native-vector-icons": "^3.0.0",
-    "react-native-video": "^0.9.0",
-    "realm": "^0.15.0",
-    "wilddog": "^2.3.9"
+    "react-native-video": "^0.9.0"
   },
   "jest": {
     "preset": "react-native"
