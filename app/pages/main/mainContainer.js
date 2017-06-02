@@ -13,23 +13,9 @@ import {
 } from 'react-native';
 
 import NavBar from 'react-native-navbar';
-import wilddog from 'wilddog';
-
-const wilddogID = 'wild-ox-7218';
-const wilddogUrl = 'https://wild-ox-7218.wilddogio.com';
-
-let Realm = require('realm');
-
-const DetailInfo = {
-    name:'Detail',
-    properties: {
-        // 以下这两种属性类型定义是等价的
-        text:   {type: 'string'},
-        img: 'string',
-    },
-};
 
 export default class mainContainer extends Component {
+<<<<<<< HEAD
     constructor(props) {
         super(props);
         let nowTime = (new Date()).valueOf();
@@ -82,28 +68,27 @@ export default class mainContainer extends Component {
 
     }
 
+=======
+>>>>>>> origin/master
     render() {
-
         let titleConfig = {
             title: '我的',
             style: {color:'black',fontSize:20,fontWeight:'600'}
         };
         return (
-
             <View style={styles.container}>
                 <NavBar
                     title={titleConfig}
                     style={{height:44,borderBottomWidth:1,borderBottomColor:'#dddddd'}}
                 />
                 <Text style={styles.welcome}>
-                    {/*Count of Dogs in Realm: {realm.objects('Dog').length}*/}
+                    Welcome to React Native!
                 </Text>
 
             </View>
         );
     }
 }
-
 
 const styles = StyleSheet.create({
     container: {
