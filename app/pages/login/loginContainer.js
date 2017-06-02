@@ -162,6 +162,7 @@ class CustomTextInput extends Component{
                     {...this.props}
                     autoCorrect={false}
                     clearButtonMode={'always'}
+                    underlineColorAndroid={'transparent'}
                 />
             </View>
         )

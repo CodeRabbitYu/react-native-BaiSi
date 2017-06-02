@@ -51,9 +51,7 @@ export default class mainContainer extends Component {
         wilddog.initializeApp(config);
         let ref = wilddog.sync().ref('/home');
         ref.on("value", (a)=>{
-            // console.log(a.val().news.text);
-
-
+            console.log(a.val().news.text);
             let text = a.val().news.text;
 
             let realm = new Realm({schema:[DetailInfo]});
@@ -64,7 +62,7 @@ export default class mainContainer extends Component {
                 // realm.delete(Sams);
             });
 
-            console.log(realm.objects('Detail'));
+            // console.log(realm.objects('Detail'));
 
             this.setState({
                 text: text

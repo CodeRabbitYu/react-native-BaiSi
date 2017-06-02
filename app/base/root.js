@@ -22,7 +22,7 @@ export default class root extends Component {
     }
     render() {
         return (
-            !this.state.isLogin ?
+            this.state.isLogin ?
                 <Login />
                 :
             <View style={{ flex: 1 }}>

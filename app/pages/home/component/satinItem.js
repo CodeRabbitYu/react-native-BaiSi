@@ -25,10 +25,11 @@ export default class satinItem extends Component {
     };
 
     render(){
+        console.log(this.props.satinData);
         return(
             <TouchableOpacity activeOpacity={0.8} onPress={this.props.satinPress}>
                 <View style={styles.satinViewStyle}>
-                    <Text style={styles.satinStyle}>
+                    <Text style={styles.satinStyle} adjustsFontSizeToFit={true}>
                         {this.props.satinData}
                     </Text>
                 </View>
@@ -43,5 +44,7 @@ const styles = StyleSheet.create({
     },
     satinStyle:{
         fontSize:16,
+        textAlign:'left'
+
     },
 });

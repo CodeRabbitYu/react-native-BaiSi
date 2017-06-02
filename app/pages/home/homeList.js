@@ -122,7 +122,6 @@ export default class homeList extends Component {
             console.log(data);
             let items = cacheResults.items.slice();
             let contentlist = data.list;
-
             if (maxtime !== 0){
                 items = items.concat(contentlist);
                 cacheResults.items = items;
